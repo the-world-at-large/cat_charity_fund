@@ -1,8 +1,8 @@
-"""Poor Kitties
+"""QRKot
 
-Revision ID: 12ffe622dee9
+Revision ID: 3d98964d7385
 Revises: 
-Create Date: 2024-07-08 17:03:40.054274
+Create Date: 2024-07-10 13:17:08.317388
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '12ffe622dee9'
+revision = '3d98964d7385'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,8 +23,8 @@ def upgrade():
     sa.Column('full_amount', sa.Integer(), nullable=True),
     sa.Column('invested_amount', sa.Integer(), nullable=True),
     sa.Column('fully_invested', sa.Boolean(), nullable=True),
-    sa.Column('create_date', sa.DateTime(), nullable=True),
-    sa.Column('close_date', sa.DateTime(), nullable=True),
+    sa.Column('create_date', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('close_date', sa.DateTime(timezone=True), nullable=True),
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
@@ -50,8 +50,8 @@ def upgrade():
     sa.Column('full_amount', sa.Integer(), nullable=True),
     sa.Column('invested_amount', sa.Integer(), nullable=True),
     sa.Column('fully_invested', sa.Boolean(), nullable=True),
-    sa.Column('create_date', sa.DateTime(), nullable=True),
-    sa.Column('close_date', sa.DateTime(), nullable=True),
+    sa.Column('create_date', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('close_date', sa.DateTime(timezone=True), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('comment', sa.Text(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
