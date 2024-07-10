@@ -135,6 +135,6 @@ dmypy.json
 .vscode/
 
 # alembic
-alembic.ini
-fastapi.db
-test.db
+.alembic.ini
+.fastapi.db
+.test.db
