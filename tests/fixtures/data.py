@@ -11,7 +11,7 @@ def charity_project(freezer, mixer):
         name='chimichangas4life',
         description='Huge fan of chimichangas. Wanna buy a lot',
         full_amount=1000000,
-        create_date=(),
+        create_date=datetime.now(),
     )
 
 
