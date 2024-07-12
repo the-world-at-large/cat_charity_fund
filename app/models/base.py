@@ -3,6 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, DateTime, Integer, Boolean
 
 from app.core.db import Base
+from .constants import DEFAULT_INVESTMENT_AMOUNT
 
 
 class BaseModel(Base):
@@ -10,7 +11,7 @@ class BaseModel(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     full_amount = Column(Integer)
-    invested_amount = Column(Integer, default=0)
+    invested_amount = Column(Integer, default=DEFAULT_INVESTMENT_AMOUNT)
     fully_invested = Column(Boolean, default=False)
     create_date = Column(DateTime(timezone=True),
                          default=lambda: datetime.now())

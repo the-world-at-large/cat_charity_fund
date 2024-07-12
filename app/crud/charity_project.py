@@ -13,16 +13,12 @@ from app.schemas.charity_project import (CharityProjectCreate,
 class CRUDCharityProject(CRUDBase):
 
     async def create_project(
-            self,
-            obj_in: CharityProjectCreate,
-            session: AsyncSession,
+        self,
+        obj_in: CharityProjectCreate,
+        session: AsyncSession,
     ) -> CharityProject:
         obj_in_data = obj_in.dict()
-        db_obj = self.model(**obj_in_data)
-        session.add(db_obj)
-        await session.commit()
-        await session.refresh(db_obj)
-        return db_obj
+        return await self.create(obj_in_data, session)
 
     async def update_project(
         self,

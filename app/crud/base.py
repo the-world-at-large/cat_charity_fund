@@ -1,11 +1,31 @@
+from typing import Type, TypeVar, Generic, Any
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.models.base import BaseModel
 
-class CRUDBase:
+ModelType = TypeVar('ModelType', bound=BaseModel)
 
-    def __init__(self, model):
+
+class CRUDBase(Generic[ModelType]):
+
+    def __init__(
+        self,
+        model: Type[ModelType],
+    ):
         self.model = model
+
+    async def create(
+        self,
+        obj_in: dict[str, Any],
+        session: AsyncSession,
+    ) -> ModelType:
+        db_obj = self.model(**obj_in)
+        session.add(db_obj)
+        await session.commit()
+        await session.refresh(db_obj)
+        return db_obj
 
     async def get_multi(
         self,
