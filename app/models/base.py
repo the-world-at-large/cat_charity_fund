@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, DateTime, Integer, Boolean
 
 from app.core.db import Base
-from .constants import DEFAULT_INVESTMENT_AMOUNT
+from ..constants import DEFAULT_INVESTMENT_AMOUNT
 
 
 class BaseModel(Base):

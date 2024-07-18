@@ -36,8 +36,8 @@ def close_entity(obj_db: BaseModel) -> BaseModel:
 
 async def money_distribution(
     obj_in: BaseModel,
-    obj_db: BaseModel
-) -> set[BaseModel]:
+    obj_db: BaseModel,
+) -> tuple[BaseModel, BaseModel]:
     rem_obj_in = obj_in.full_amount - obj_in.invested_amount
     rem_obj_db = obj_db.full_amount - obj_db.invested_amount
 
