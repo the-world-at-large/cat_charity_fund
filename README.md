@@ -98,6 +98,7 @@
 ├── alembic.ini
 ├── README.md
 └── requirements.txt
+```
 
 # API Endpoints
 
